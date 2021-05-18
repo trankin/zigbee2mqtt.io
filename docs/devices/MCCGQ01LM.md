@@ -12,7 +12,7 @@ description: "Integrate your Xiaomi MCCGQ01LM via Zigbee2MQTT with whatever smar
 | Model | MCCGQ01LM  |
 | Vendor  | Xiaomi  |
 | Description | MiJia door & window contact sensor |
-| Supports | contact |
+| Exposes | battery, contact, voltage, linkquality |
 | Picture | ![Xiaomi MCCGQ01LM](../images/devices/MCCGQ01LM.jpg) |
 
 ## Notes
@@ -33,16 +33,16 @@ More detailed information about this can be found [here](https://community.hubit
 
 
 ## OpenHAB integration and configuration
-In OpenHAB you need the MQTT Binding to be installed. It is possible to add this sensor as a generic mqtt thing, but here it is described how to add the sensor manually via an editor.
+In OpenHAB you need the MQTT Binding to be installed. It is possible to add this sensor as a generic MQTT thing, but here it is described how to add the sensor manually via an editor.
 
-To make the following configuration work it is neccessary to enable the experimental attribute output in the configuration.yaml.
+To make the following configuration work it is necessary to enable the experimental attribute output in the configuration.yaml.
 ```yaml
 experimental:
     output: attribute
 ```
 
 ### Thing
-To add this Xiaomi MCCGQ01LM MiJia door & window contact sensor as Thing it is necessary to embed the Thing into a bridge definition of a mqtt broker. Please concider that for the door window sensor OPEN is false (no contact) and CLOSED is true (contact). So make sure that on(OPEN) = "false" and off(CLOSED) = "true".
+To add this Xiaomi MCCGQ01LM MiJia door & window contact sensor as Thing it is necessary to embed the Thing into a bridge definition of a MQTT broker. Please consider that for the door window sensor OPEN is false (no contact) and CLOSED is true (contact). So make sure that on(OPEN) = "false" and off(CLOSED) = "true".
 
 ```yaml
 Bridge mqtt:broker:zigbeeBroker [ host="YourHostname", secure=false, username="your_username", password="your_password" ]
@@ -55,7 +55,7 @@ Bridge mqtt:broker:zigbeeBroker [ host="YourHostname", secure=false, username="y
             Type number   : battery     "battery"     [ stateTopic = "zigbee2mqtt/<FRIENDLY_NAME>/battery" ]
             Type number   : linkquality "linkquality" [ stateTopic = "zigbee2mqtt/<FRIENDLY_NAME>/linkquality" ]
             /****************************************************************************************************
-            If you want to know when the sensor has been last changed you cann add to your configuration.yaml:
+            If you want to know when the sensor has been last changed you can add to your configuration.yaml:
             advanced:
                 last_seen: ISO_8601_local
 
@@ -77,6 +77,35 @@ DateTime door_window_sensor_last_change "last change [%1$td.%1$tm.%1$tY %1$tH:%1
 ```
 
 
+
+## Exposes
+
+### Battery (numeric)
+Remaining battery in %.
+Value can be found in the published state on the `battery` property.
+It's not possible to read (`/get`) or write (`/set`) this value.
+The minimal value is `0` and the maximum value is `100`.
+The unit of this value is `%`.
+
+### Contact (binary)
+Indicates if the contact is closed (= true) or open (= false).
+Value can be found in the published state on the `contact` property.
+It's not possible to read (`/get`) or write (`/set`) this value.
+If value equals `false` contact is ON, if `true` OFF.
+
+### Voltage (numeric)
+Voltage of the battery in millivolts.
+Value can be found in the published state on the `voltage` property.
+It's not possible to read (`/get`) or write (`/set`) this value.
+The unit of this value is `mV`.
+
+### Linkquality (numeric)
+Link quality (signal strength).
+Value can be found in the published state on the `linkquality` property.
+It's not possible to read (`/get`) or write (`/set`) this value.
+The minimal value is `0` and the maximum value is `255`.
+The unit of this value is `lqi`.
+
 ## Manual Home Assistant configuration
 Although Home Assistant integration through [MQTT discovery](../integration/home_assistant) is preferred,
 manual integration is possible with the following configuration:
@@ -84,30 +113,38 @@ manual integration is possible with the following configuration:
 
 {% raw %}
 ```yaml
+sensor:
+  - platform: "mqtt"
+    state_topic: "zigbee2mqtt/<FRIENDLY_NAME>"
+    availability_topic: "zigbee2mqtt/bridge/state"
+    value_template: "{{ value_json.battery }}"
+    unit_of_measurement: "%"
+    device_class: "battery"
+
 binary_sensor:
   - platform: "mqtt"
     state_topic: "zigbee2mqtt/<FRIENDLY_NAME>"
     availability_topic: "zigbee2mqtt/bridge/state"
+    value_template: "{{ value_json.contact }}"
     payload_on: false
     payload_off: true
-    value_template: "{{ value_json.contact }}"
     device_class: "door"
 
 sensor:
   - platform: "mqtt"
     state_topic: "zigbee2mqtt/<FRIENDLY_NAME>"
     availability_topic: "zigbee2mqtt/bridge/state"
-    unit_of_measurement: "%"
-    device_class: "battery"
-    value_template: "{{ value_json.battery }}"
+    value_template: "{{ value_json.voltage }}"
+    unit_of_measurement: "mV"
+    device_class: "voltage"
 
 sensor:
   - platform: "mqtt"
     state_topic: "zigbee2mqtt/<FRIENDLY_NAME>"
     availability_topic: "zigbee2mqtt/bridge/state"
-    icon: "mdi:signal"
-    unit_of_measurement: "lqi"
     value_template: "{{ value_json.linkquality }}"
+    unit_of_measurement: "lqi"
+    icon: "mdi:signal"
 ```
 {% endraw %}
 
