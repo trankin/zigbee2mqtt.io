@@ -1,6 +1,6 @@
 ---
 title: "EnOcean PTM 215ZE control via MQTT"
-description: "Integrate your EnOcean PTM 215ZE via Zigbee2MQTT with whatever smart home infrastructure you are using without the vendors bridge or gateway."
+description: "Integrate your EnOcean PTM 215ZE via Zigbee2MQTT with whatever smart home infrastructure you are using without the vendor's bridge or gateway."
 addedAt: 2021-09-02T18:14:38Z
 pageClass: device-page
 ---
@@ -16,10 +16,10 @@ pageClass: device-page
 |     |     |
 |-----|-----|
 | Model | PTM 215ZE  |
-| Vendor  | EnOcean  |
+| Vendor  | [EnOcean](/supported-devices/#v=EnOcean)  |
 | Description | Pushbutton transmitter module |
 | Exposes | action, linkquality |
-| Picture | ![EnOcean PTM 215ZE](https://www.zigbee2mqtt.io/images/devices/PTM-215ZE.jpg) |
+| Picture | ![EnOcean PTM 215ZE](https://www.zigbee2mqtt.io/images/devices/PTM-215ZE.png) |
 | White-label | Easyfit by EnOcean EWSxZ, Trio2sys 20020002 |
 
 
@@ -37,18 +37,18 @@ Green Power devices don't support binding and are not included in network scans.
 ### Pairing
 This device has 4 buttons:
 
-| Number | Button | Position |
-|-|-|-|
-| 1 | A0 | top left |
-| 2 | A1 | bottom left |
-| 3 | B0 | top right |
-| 4 | B1 | bottom right |
+| Number | Button | Position | Zigbee Channel |
+|-|-|-|-|
+| 1 | A0 | top left | 15 |
+| 2 | A1 | bottom left | 20 |
+| 3 | B0 | top right | 11 |
+| 4 | B1 | bottom right | 25 |
 
 In case the module is integrated in a single rocker switch, you need to remove the caps to expose all buttons. A button can be pressed by holding the contact of that button and then push the energy bar.
 
 To pair it, start by shortly (less than 7 seconds) pressing two different buttons one after another. Any button of the device (A0, A1, B0, B1) can be used.
 
-Next, select one button of the device (A0, A1, B0, or B1) and execute the following long-short-long sequence:
+Next, read the table above and find the Zigbee channel your network runs at (if you don't know this, it's probably channel 11, as this is zigbee2mqtt's default). Select the button of the device (A0, A1, B0, or B1) that fits your desired channel and execute the following long-short-long sequence:
 
 1. Press and hold the selected button for more than 7 seconds before releasing it
 2. Press the selected button quickly (hold for less than 2 seconds)
@@ -58,8 +58,10 @@ Then, press the selected button contact shortly (< 7s) to select radio channel 1
 
 Once the device is paired you need to confirm the channel. To do this, press any button other than the one used previously.
 
-For more informations, please refer to the [EnOcean PTM 215ZE manual chapter 5.1](https://www.enocean.com/en/products/enocean_modules_24ghz/ptm-215ze/user-manual-pdf/).
+For more informations, please refer to the [EnOcean PTM 215ZE manual chapter 3.6.2.1](https://www.enocean.com/wp-content/uploads/downloads-produkte/en/products/enocean_modules_24ghz/ptm-215ze/user-manual-pdf/PTM_215ZE_User_Manual-1.pdf).
 <!-- Notes END: Do not edit below this line -->
+
+
 
 
 ## Exposes
@@ -68,7 +70,7 @@ For more informations, please refer to the [EnOcean PTM 215ZE manual chapter 5.1
 Triggered action (e.g. a button click).
 Value can be found in the published state on the `action` property.
 It's not possible to read (`/get`) or write (`/set`) this value.
-The possible values are: `press_1`, `release_1`, `press_2`, `release_2`, `press_3`, `release_3`, `press_4`, `release_4`, `press_1_and_2`, `release_1_and_2`, `press_1_and_3`, `release_1_and_3`, `press_1_and_4`, `release_1_and_4`, `press_2_and_3`, `release_2_and_3`, `press_2_and_4`, `release_2_and_4`, `press_3_and_4`, `release_3_and_4`, `press_energy_bar`, `release_energy_bar`, `press_or_release_all`.
+The possible values are: `press_1`, `release_1`, `press_2`, `release_2`, `press_3`, `release_3`, `press_4`, `release_4`, `press_1_and_2`, `release_1_and_2`, `press_1_and_3`, `release_1_and_3`, `press_1_and_4`, `release_1_and_4`, `press_2_and_3`, `release_2_and_3`, `press_2_and_4`, `release_2_and_4`, `press_3_and_4`, `release_3_and_4`, `press_energy_bar`, `release_energy_bar`, `press_or_release_all`, `lock`, `unlock`, `half_open`, `tilt`.
 
 ### Linkquality (numeric)
 Link quality (signal strength).

@@ -1,6 +1,6 @@
 ---
-title: "Xiaomi WXKG07LM control via MQTT"
-description: "Integrate your Xiaomi WXKG07LM via Zigbee2MQTT with whatever smart home infrastructure you are using without the vendors bridge or gateway."
+title: "Aqara WXKG07LM control via MQTT"
+description: "Integrate your Aqara WXKG07LM via Zigbee2MQTT with whatever smart home infrastructure you are using without the vendor's bridge or gateway."
 addedAt: 2020-04-29T17:11:59Z
 pageClass: device-page
 ---
@@ -11,20 +11,22 @@ pageClass: device-page
 <!-- Do not use h1 or h2 heading within "## Notes"-Section. -->
 <!-- !!!! -->
 
-# Xiaomi WXKG07LM
+# Aqara WXKG07LM
 
 |     |     |
 |-----|-----|
 | Model | WXKG07LM  |
-| Vendor  | Xiaomi  |
-| Description | Aqara D1 double key wireless wall switch |
+| Vendor  | [Aqara](/supported-devices/#v=Aqara)  |
+| Description | Wireless remote switch D1 (double rocker) |
 | Exposes | battery, voltage, action, linkquality |
-| Picture | ![Xiaomi WXKG07LM](https://www.zigbee2mqtt.io/images/devices/WXKG07LM.jpg) |
+| Picture | ![Aqara WXKG07LM](https://www.zigbee2mqtt.io/images/devices/WXKG07LM.png) |
 
 
 <!-- Notes BEGIN: You can edit here. Add "## Notes" headline if not already present. -->
 ## Notes
 
+### Battery
+Uses a CR2032 battery
 
 ### Deprecated click event
 By default this device exposes a deprecated `click` event. It's recommended to use the `action` event instead.
@@ -37,18 +39,15 @@ devices:
     friendly_name: my_device
     legacy: false
 ```
-
-### Device type specific configuration
-*[How to use device type specific configuration](../guide/configuration/devices-groups.md#specific-device-options)*
-
-* `legacy`: Set to `false` to disable the legacy integration (highly recommended!) (default: true)
 <!-- Notes END: Do not edit below this line -->
+
+
 
 
 ## Exposes
 
 ### Battery (numeric)
-Remaining battery in %.
+Remaining battery in %, can take up to 24 hours before reported.
 Value can be found in the published state on the `battery` property.
 It's not possible to read (`/get`) or write (`/set`) this value.
 The minimal value is `0` and the maximum value is `100`.

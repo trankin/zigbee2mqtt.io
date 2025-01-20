@@ -1,7 +1,7 @@
 ---
 title: "Zemismart ZM-CSW032-D control via MQTT"
-description: "Integrate your Zemismart ZM-CSW032-D via Zigbee2MQTT with whatever smart home infrastructure you are using without the vendors bridge or gateway."
-addedAt: 2019-11-09T18:37:38Z
+description: "Integrate your Zemismart ZM-CSW032-D via Zigbee2MQTT with whatever smart home infrastructure you are using without the vendor's bridge or gateway."
+addedAt: 2024-09-01T12:36:27
 pageClass: device-page
 ---
 
@@ -16,20 +16,27 @@ pageClass: device-page
 |     |     |
 |-----|-----|
 | Model | ZM-CSW032-D  |
-| Vendor  | Zemismart  |
+| Vendor  | [Zemismart](/supported-devices/#v=Zemismart)  |
 | Description | Curtain/roller blind switch |
 | Exposes | cover (state, position), linkquality |
-| Picture | ![Zemismart ZM-CSW032-D](https://www.zigbee2mqtt.io/images/devices/ZM-CSW032-D.jpg) |
+| Picture | ![Zemismart ZM-CSW032-D](https://www.zigbee2mqtt.io/images/devices/ZM-CSW032-D.png) |
 
 
 <!-- Notes BEGIN: You can edit here. Add "## Notes" headline if not already present. -->
-## Notes
 
-### Device type specific configuration
+
+<!-- Notes END: Do not edit below this line -->
+
+
+
+## Options
 *[How to use device type specific configuration](../guide/configuration/devices-groups.md#specific-device-options)*
 
-* `invert_cover`: By default the position/tilt values mean: open = 100, closed = 0. This can be inverted by setting this option to true (so open = 0, close = 100).
-<!-- Notes END: Do not edit below this line -->
+* `invert_cover`: Inverts the cover position, false: open=100,close=0, true: open=0,close=100 (default false). The value must be `true` or `false`
+
+* `time_close`: Set the full closing time of the roller shutter (e.g. set it to 20) (value is in s). The value must be a number.
+
+* `time_open`: Set the full opening time of the roller shutter (e.g. set it to 21) (value is in s). The value must be a number.
 
 
 ## Exposes

@@ -1,6 +1,6 @@
 ---
-title: "Xiaomi WXKG02LM_rev1 control via MQTT"
-description: "Integrate your Xiaomi WXKG02LM_rev1 via Zigbee2MQTT with whatever smart home infrastructure you are using without the vendors bridge or gateway."
+title: "Aqara WXKG02LM_rev1 control via MQTT"
+description: "Integrate your Aqara WXKG02LM_rev1 via Zigbee2MQTT with whatever smart home infrastructure you are using without the vendor's bridge or gateway."
 addedAt: 2020-12-30T11:31:00Z
 pageClass: device-page
 ---
@@ -11,15 +11,15 @@ pageClass: device-page
 <!-- Do not use h1 or h2 heading within "## Notes"-Section. -->
 <!-- !!!! -->
 
-# Xiaomi WXKG02LM_rev1
+# Aqara WXKG02LM_rev1
 
 |     |     |
 |-----|-----|
 | Model | WXKG02LM_rev1  |
-| Vendor  | Xiaomi  |
-| Description | Aqara double key wireless wall switch (2016 model) |
-| Exposes | battery, action, voltage, linkquality |
-| Picture | ![Xiaomi WXKG02LM_rev1](https://www.zigbee2mqtt.io/images/devices/WXKG02LM_rev1.jpg) |
+| Vendor  | [Aqara](/supported-devices/#v=Aqara)  |
+| Description | Wireless remote switch (double rocker), 2016 model |
+| Exposes | battery, voltage, power_outage_count, action, linkquality |
+| Picture | ![Aqara WXKG02LM_rev1](https://www.zigbee2mqtt.io/images/devices/WXKG02LM_rev1.png) |
 
 
 <!-- Notes BEGIN: You can edit here. Add "## Notes" headline if not already present. -->
@@ -45,34 +45,36 @@ Press and hold the button on the device for +- 10 seconds
 
 You may have to unpair the switch from an existing coordinator before the pairing process will start.
 If you can't do this, try to remove battery (if it has one), push the button (to completely discharge device), place the battery back and try pairing again.
-
-### Device type specific configuration
-*[How to use device type specific configuration](../guide/configuration/devices-groups.md#specific-device-options)*
-
-* `legacy`: Set to `false` to disable the legacy integration (highly recommended!) (default: true)
 <!-- Notes END: Do not edit below this line -->
+
+
 
 
 ## Exposes
 
 ### Battery (numeric)
-Remaining battery in %.
+Remaining battery in %, can take up to 24 hours before reported.
 Value can be found in the published state on the `battery` property.
 It's not possible to read (`/get`) or write (`/set`) this value.
 The minimal value is `0` and the maximum value is `100`.
 The unit of this value is `%`.
-
-### Action (enum)
-Triggered action (e.g. a button click).
-Value can be found in the published state on the `action` property.
-It's not possible to read (`/get`) or write (`/set`) this value.
-The possible values are: `single_left`, `single_right`, `single_both`.
 
 ### Voltage (numeric)
 Voltage of the battery in millivolts.
 Value can be found in the published state on the `voltage` property.
 It's not possible to read (`/get`) or write (`/set`) this value.
 The unit of this value is `mV`.
+
+### Power outage count (numeric)
+Number of power outages.
+Value can be found in the published state on the `power_outage_count` property.
+It's not possible to read (`/get`) or write (`/set`) this value.
+
+### Action (enum)
+Triggered action (e.g. a button click).
+Value can be found in the published state on the `action` property.
+It's not possible to read (`/get`) or write (`/set`) this value.
+The possible values are: `single_left`, `single_right`, `single_both`.
 
 ### Linkquality (numeric)
 Link quality (signal strength).

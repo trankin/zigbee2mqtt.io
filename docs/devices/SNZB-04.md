@@ -1,6 +1,6 @@
 ---
-title: "SONOFF SNZB-04 control via MQTT"
-description: "Integrate your SONOFF SNZB-04 via Zigbee2MQTT with whatever smart home infrastructure you are using without the vendors bridge or gateway."
+title: "eWeLink SNZB-04 control via MQTT"
+description: "Integrate your eWeLink SNZB-04 via Zigbee2MQTT with whatever smart home infrastructure you are using without the vendor's bridge or gateway."
 addedAt: 2020-07-10T21:02:48Z
 pageClass: device-page
 ---
@@ -11,16 +11,15 @@ pageClass: device-page
 <!-- Do not use h1 or h2 heading within "## Notes"-Section. -->
 <!-- !!!! -->
 
-# SONOFF SNZB-04
+# eWeLink SNZB-04
 
 |     |     |
 |-----|-----|
 | Model | SNZB-04  |
-| Vendor  | SONOFF  |
+| Vendor  | [eWeLink](/supported-devices/#v=eWeLink)  |
 | Description | Contact sensor |
-| Exposes | contact, battery_low, battery, voltage, linkquality |
-| Picture | ![SONOFF SNZB-04](https://www.zigbee2mqtt.io/images/devices/SNZB-04.jpg) |
-| White-label | eWeLink RHK06 |
+| Exposes | battery, voltage, contact, battery_low, linkquality |
+| Picture | ![eWeLink SNZB-04](https://www.zigbee2mqtt.io/images/devices/SNZB-04.png) |
 
 
 <!-- Notes BEGIN: You can edit here. Add "## Notes" headline if not already present. -->
@@ -32,32 +31,36 @@ Long press reset button for 5s until the LED indicator flashes three times, whic
 <!-- Notes END: Do not edit below this line -->
 
 
+
+
 ## Exposes
-
-### Contact (binary)
-Indicates if the contact is closed (= true) or open (= false).
-Value can be found in the published state on the `contact` property.
-It's not possible to read (`/get`) or write (`/set`) this value.
-If value equals `false` contact is ON, if `true` OFF.
-
-### Battery_low (binary)
-Indicates if the battery of this device is almost empty.
-Value can be found in the published state on the `battery_low` property.
-It's not possible to read (`/get`) or write (`/set`) this value.
-If value equals `true` battery_low is ON, if `false` OFF.
 
 ### Battery (numeric)
 Remaining battery in %.
 Value can be found in the published state on the `battery` property.
-It's not possible to read (`/get`) or write (`/set`) this value.
+To read (`/get`) the value publish a message to topic `zigbee2mqtt/FRIENDLY_NAME/get` with payload `{"battery": ""}`.
+It's not possible to write (`/set`) this value.
 The minimal value is `0` and the maximum value is `100`.
 The unit of this value is `%`.
 
 ### Voltage (numeric)
-Voltage of the battery in millivolts.
+Reported battery voltage in millivolts.
 Value can be found in the published state on the `voltage` property.
-It's not possible to read (`/get`) or write (`/set`) this value.
+To read (`/get`) the value publish a message to topic `zigbee2mqtt/FRIENDLY_NAME/get` with payload `{"voltage": ""}`.
+It's not possible to write (`/set`) this value.
 The unit of this value is `mV`.
+
+### Contact (binary)
+Indicates whether the device is opened or closed.
+Value can be found in the published state on the `contact` property.
+It's not possible to read (`/get`) or write (`/set`) this value.
+If value equals `false` contact is ON, if `true` OFF.
+
+### Battery low (binary)
+Indicates whether the battery of the device is almost empty.
+Value can be found in the published state on the `battery_low` property.
+It's not possible to read (`/get`) or write (`/set`) this value.
+If value equals `true` battery low is ON, if `false` OFF.
 
 ### Linkquality (numeric)
 Link quality (signal strength).

@@ -1,6 +1,6 @@
 ---
 title: "Sunricher SR-ZG9080A control via MQTT"
-description: "Integrate your Sunricher SR-ZG9080A via Zigbee2MQTT with whatever smart home infrastructure you are using without the vendors bridge or gateway."
+description: "Integrate your Sunricher SR-ZG9080A via Zigbee2MQTT with whatever smart home infrastructure you are using without the vendor's bridge or gateway."
 addedAt: 2021-05-01T14:47:09Z
 pageClass: device-page
 ---
@@ -16,20 +16,25 @@ pageClass: device-page
 |     |     |
 |-----|-----|
 | Model | SR-ZG9080A  |
-| Vendor  | Sunricher  |
+| Vendor  | [Sunricher](/supported-devices/#v=Sunricher)  |
 | Description | Curtain motor controller |
 | Exposes | cover (state, position), linkquality |
-| Picture | ![Sunricher SR-ZG9080A](https://www.zigbee2mqtt.io/images/devices/SR-ZG9080A.jpg) |
+| Picture | ![Sunricher SR-ZG9080A](https://www.zigbee2mqtt.io/images/devices/SR-ZG9080A.png) |
 
 
 <!-- Notes BEGIN: You can edit here. Add "## Notes" headline if not already present. -->
-## Notes
 
-### Device type specific configuration
+
+<!-- Notes END: Do not edit below this line -->
+
+
+
+## Options
 *[How to use device type specific configuration](../guide/configuration/devices-groups.md#specific-device-options)*
 
-* `invert_cover`: By default the position/tilt values mean: open = 100, closed = 0. This can be inverted by setting this option to true (so open = 0, close = 100).
-<!-- Notes END: Do not edit below this line -->
+* `invert_cover`: Inverts the cover position, false: open=100,close=0, true: open=0,close=100 (default false). The value must be `true` or `false`
+
+* `cover_position_tilt_disable_report`: Do not publish set cover target position as a normal 'position' value (default false). The value must be `true` or `false`
 
 
 ## Exposes

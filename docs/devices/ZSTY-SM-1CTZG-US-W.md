@@ -1,6 +1,6 @@
 ---
 title: "Somgoms ZSTY-SM-1CTZG-US-W control via MQTT"
-description: "Integrate your Somgoms ZSTY-SM-1CTZG-US-W via Zigbee2MQTT with whatever smart home infrastructure you are using without the vendors bridge or gateway."
+description: "Integrate your Somgoms ZSTY-SM-1CTZG-US-W via Zigbee2MQTT with whatever smart home infrastructure you are using without the vendor's bridge or gateway."
 addedAt: 2020-08-11T22:17:44Z
 pageClass: device-page
 ---
@@ -16,20 +16,23 @@ pageClass: device-page
 |     |     |
 |-----|-----|
 | Model | ZSTY-SM-1CTZG-US-W  |
-| Vendor  | Somgoms  |
+| Vendor  | [Somgoms](/supported-devices/#v=Somgoms)  |
 | Description | Curtain switch |
 | Exposes | cover (state, position), linkquality |
-| Picture | ![Somgoms ZSTY-SM-1CTZG-US-W](https://www.zigbee2mqtt.io/images/devices/ZSTY-SM-1CTZG-US-W.jpg) |
+| Picture | ![Somgoms ZSTY-SM-1CTZG-US-W](https://www.zigbee2mqtt.io/images/devices/ZSTY-SM-1CTZG-US-W.png) |
 
 
 <!-- Notes BEGIN: You can edit here. Add "## Notes" headline if not already present. -->
-## Notes
 
-### Device type specific configuration
+
+<!-- Notes END: Do not edit below this line -->
+
+
+
+## Options
 *[How to use device type specific configuration](../guide/configuration/devices-groups.md#specific-device-options)*
 
-* `invert_cover`: By default the position/tilt values mean: open = 100, closed = 0. This can be inverted by setting this option to true (so open = 0, close = 100).
-<!-- Notes END: Do not edit below this line -->
+* `invert_cover`: Inverts the cover position, false: open=100,close=0, true: open=0,close=100 (default false). The value must be `true` or `false`
 
 
 ## Exposes

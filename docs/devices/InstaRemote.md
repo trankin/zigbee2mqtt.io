@@ -1,6 +1,6 @@
 ---
 title: "Insta InstaRemote control via MQTT"
-description: "Integrate your Insta InstaRemote via Zigbee2MQTT with whatever smart home infrastructure you are using without the vendors bridge or gateway."
+description: "Integrate your Insta InstaRemote via Zigbee2MQTT with whatever smart home infrastructure you are using without the vendor's bridge or gateway."
 addedAt: 2020-04-08T17:49:06Z
 pageClass: device-page
 ---
@@ -16,10 +16,10 @@ pageClass: device-page
 |     |     |
 |-----|-----|
 | Model | InstaRemote  |
-| Vendor  | Insta  |
+| Vendor  | [Insta](/supported-devices/#v=Insta)  |
 | Description | ZigBee Light Link wall/handheld transmitter |
 | Exposes | action, linkquality |
-| Picture | ![Insta InstaRemote](https://www.zigbee2mqtt.io/images/devices/InstaRemote.jpg) |
+| Picture | ![Insta InstaRemote](https://www.zigbee2mqtt.io/images/devices/InstaRemote.png) |
 | White-label | Gira 2430-100, Gira 2435-10, Jung ZLLCD5004M, Jung ZLLLS5004M, Jung ZLLA5004M, Jung ZLLHS4 |
 
 
@@ -47,15 +47,22 @@ Unfortunately Gira seems to have dropped support for their ZigBee transmitters c
 ### OTA
 For the device to ask for/accept OTA updates, it needs to be in "programming mode" (same mode as for joining a network, see above).
 In case the device does still not accept updates or seems to be stuck somehow, it may help to do a factory reset, join the network again and then again enter programming mode before starting the OTA update again.
-
-### Device type specific configuration
-*[How to use device type specific configuration](../guide/configuration/devices-groups.md#specific-device-options)*
-
-* `legacy`: Set to `false` to disable the legacy integration (highly recommended!) (default: true)
 <!-- Notes END: Do not edit below this line -->
+
 
 ## OTA updates
 This device supports OTA updates, for more information see [OTA updates](../guide/usage/ota_updates.md).
+
+
+## Options
+*[How to use device type specific configuration](../guide/configuration/devices-groups.md#specific-device-options)*
+
+* `simulated_brightness`: Simulate a brightness value. If this device provides a brightness_move_up or brightness_move_down action it is possible to specify the update interval and delta. The action_brightness_delta indicates the delta for each interval. Example:
+```yaml
+simulated_brightness:
+  delta: 20 # delta per interval, default = 20
+  interval: 200 # interval in milliseconds, default = 200
+```
 
 
 ## Exposes

@@ -1,6 +1,6 @@
 ---
 title: "Lutron LZL4BWHL01 control via MQTT"
-description: "Integrate your Lutron LZL4BWHL01 via Zigbee2MQTT with whatever smart home infrastructure you are using without the vendors bridge or gateway."
+description: "Integrate your Lutron LZL4BWHL01 via Zigbee2MQTT with whatever smart home infrastructure you are using without the vendor's bridge or gateway."
 addedAt: 2019-09-08T21:16:00Z
 pageClass: device-page
 ---
@@ -16,20 +16,14 @@ pageClass: device-page
 |     |     |
 |-----|-----|
 | Model | LZL4BWHL01  |
-| Vendor  | Lutron  |
+| Vendor  | [Lutron](/supported-devices/#v=Lutron)  |
 | Description | Connected bulb remote control |
 | Exposes | action, linkquality |
-| Picture | ![Lutron LZL4BWHL01](https://www.zigbee2mqtt.io/images/devices/LZL4BWHL01.jpg) |
+| Picture | ![Lutron LZL4BWHL01](https://www.zigbee2mqtt.io/images/devices/LZL4BWHL01.png) |
 
 
 <!-- Notes BEGIN: You can edit here. Add "## Notes" headline if not already present. -->
 ## Notes
-
-### Device type specific configuration
-*[How to use device type specific configuration](../guide/configuration/devices-groups.md#specific-device-options)*
-
-* `legacy`: Set to `false` to disable the legacy integration (highly recommended!) (default: true)
-
 
 ### Pairing
 Factory reset the Lutron Connected Bulb Remote by pressing and holding the remote's top and bottom buttons for approximately 15 seconds. The light on the remote will blink rapidly to indicate that the remote has been reset.
@@ -45,13 +39,25 @@ This method should work for Philips Hue bulbs, IKEA TRADFRI bulbs, GE Link bulbs
 <!-- Notes END: Do not edit below this line -->
 
 
+
+## Options
+*[How to use device type specific configuration](../guide/configuration/devices-groups.md#specific-device-options)*
+
+* `simulated_brightness`: Simulate a brightness value. If this device provides a brightness_move_up or brightness_move_down action it is possible to specify the update interval and delta. The action_brightness_delta indicates the delta for each interval. Example:
+```yaml
+simulated_brightness:
+  delta: 20 # delta per interval, default = 20
+  interval: 200 # interval in milliseconds, default = 200
+```
+
+
 ## Exposes
 
 ### Action (enum)
 Triggered action (e.g. a button click).
 Value can be found in the published state on the `action` property.
 It's not possible to read (`/get`) or write (`/set`) this value.
-The possible values are: `down`, `up`, `stop`.
+The possible values are: `brightness_step_down`, `brightness_step_up`, `brightness_stop`, `brightness_move_to_level`.
 
 ### Linkquality (numeric)
 Link quality (signal strength).
